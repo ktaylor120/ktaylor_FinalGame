@@ -9,8 +9,9 @@ public class Damage : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject hitParticlePrefab;
+
+    private void Start()
     {
         currentHealth = maxHealth;
     }
@@ -19,8 +20,13 @@ public class Damage : MonoBehaviour
     {
         currentHealth -= damage;
 
-        //Play hurt animation
+        // Play hurt animation
         animator.SetTrigger("Hurt");
+
+        // Instantiate hit particle effect at the object's position
+        Vector3 spawnPosition = transform.position + Vector3.up;
+        Instantiate(hitParticlePrefab, spawnPosition, Quaternion.identity);
+
 
         if (currentHealth <= 0)
         {
