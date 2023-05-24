@@ -26,7 +26,11 @@ public class Player1Controller : MonoBehaviour
         // Check if spacebar is pressed for attack
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PerformAttack();
+            if (!isAttacking) // If not currently attacking, perform the attack
+            {
+                PerformAttack();
+                return;
+            }
         }
 
         if (isAttacking) // If the character is currently attacking, disable movement
@@ -61,13 +65,13 @@ public class Player1Controller : MonoBehaviour
 
     private void PerformAttack()
     {
-        if (isAttacking) // If the character is already attacking, ignore the input
-            return;
-
         // Trigger the attack animation
         animator.SetTrigger("Attack");
         isAttacking = true;
+    }
 
+    private void HitBoxEvent()
+    {
         // Detect enemies
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         // Damage them
@@ -75,10 +79,11 @@ public class Player1Controller : MonoBehaviour
         {
             enemy.GetComponent<Damage>().TakeDamage(attackDamage);
         }
-    }
 
+    }
     private void EndAttackAnimation()
     {
+
         isAttacking = false;
     }
 

@@ -10,16 +10,19 @@ public class Damage : MonoBehaviour
     int currentHealth;
 
     public GameObject hitParticlePrefab;
+    public HealthBar healthBar;
 
-    private void Start()
+    public void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
+        healthBar.SetHealth(currentHealth);
         // Play hurt animation
         animator.SetTrigger("Hurt");
 
