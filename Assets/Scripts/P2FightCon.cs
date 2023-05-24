@@ -32,7 +32,14 @@ public class P2FightCon : MonoBehaviour
                 return;
             }
         }
-
+        if (isAttacking)
+        {
+            // Continue checking if the attack animation has finished
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                EndAttackAnimation();
+            }
+        }
     }
 
     private void PerformAttack()
@@ -42,6 +49,13 @@ public class P2FightCon : MonoBehaviour
         isAttacking = true;
         movementScript.SetIsAttacking(true); // Disable movement in the Movem script
     }
+
+    private void EndAttackAnimation()
+    {
+        isAttacking = false;
+        movementScript.SetIsAttacking(false); // Enable movement in the Movem script
+    }
+
 
     private void HitBoxEvent()
     {
@@ -54,13 +68,6 @@ public class P2FightCon : MonoBehaviour
         }
 
     }
-
-    private void EndAttackAnimation()
-    {
-        isAttacking = false;
-        movementScript.SetIsAttacking(false); // Enable movement in the Movem script
-    }
-
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

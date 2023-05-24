@@ -22,7 +22,6 @@ public class FightingCon : MonoBehaviour
 
     private void Update()
     {
-
         // Check if spacebar is pressed for attack
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -33,6 +32,14 @@ public class FightingCon : MonoBehaviour
             }
         }
 
+        if (isAttacking)
+        {
+            // Continue checking if the attack animation has finished
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                EndAttackAnimation();
+            }
+        }
     }
 
     private void PerformAttack()
@@ -41,6 +48,12 @@ public class FightingCon : MonoBehaviour
         animator.SetTrigger("Attack");
         isAttacking = true;
         movementScript.SetIsAttacking(true); // Disable movement in the Movem script
+    }
+
+    private void EndAttackAnimation()
+    {
+        isAttacking = false;
+        movementScript.SetIsAttacking(false); // Enable movement in the Movem script
     }
 
     private void HitBoxEvent()
@@ -52,13 +65,6 @@ public class FightingCon : MonoBehaviour
         {
             enemy.GetComponent<Damage>().TakeDamage(attackDamage);
         }
-
-    }
-
-    private void EndAttackAnimation()
-    {
-        isAttacking = false;
-        movementScript.SetIsAttacking(false); // Enable movement in the Movem script
     }
 
     private void OnDrawGizmosSelected()
