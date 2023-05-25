@@ -12,7 +12,7 @@ public class P2FightCon : MonoBehaviour
 
     private Animator animator; // Reference to the Animator component
     private P2Movement movementScript; // Reference to the Movem script
-    private bool isAttacking = false; // Flag to track if the character is currently attacking
+   
 
     private void Start()
     {
@@ -26,33 +26,26 @@ public class P2FightCon : MonoBehaviour
         // Check if spacebar is pressed for attack
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (!isAttacking) // If not currently attacking, perform the attack
+
             {
                 PerformAttack();
                 return;
             }
         }
-        if (isAttacking)
-        {
-            // Continue checking if the attack animation has finished
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
-                EndAttackAnimation();
-            }
-        }
+
     }
 
     private void PerformAttack()
     {
         // Trigger the attack animation
         animator.SetTrigger("Attack");
-        isAttacking = true;
+
         movementScript.SetIsAttacking(true); // Disable movement in the Movem script
     }
 
     private void EndAttackAnimation()
     {
-        isAttacking = false;
+
         movementScript.SetIsAttacking(false); // Enable movement in the Movem script
     }
 

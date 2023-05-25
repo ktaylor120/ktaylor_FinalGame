@@ -391,9 +391,7 @@ ModelImporter:
       discarded.\n\t'B_R_Finger2' has scale animation that will be discarded.\n\t'B_R_Finger21'
       has scale animation that will be discarded.\n\t'B_R_Finger22' has scale animation
       that will be discarded.\n\t'B_R_Finger3' has scale animation that will be discarded.\n\t'B_R_Finger4'
-      has scale animation that will be discarded.\nEvent EndAttackAnimation has a
-      time (0.541934) outside the clip's valid range (0.000000..0.533333). It will
-      never be fired"
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -431,15 +429,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.65032095
-        functionName: EndAttackAnimation
+      - time: 0.23913044
+        functionName: HitBoxEvent
         data: 
         objectReferenceParameter: {fileID: 8654250720420973338, guid: 34115fd4eff069845a47d22ce756724e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.23913044
-        functionName: HitBoxEvent
+      - time: 0.6197183
+        functionName: EndAttackAnimation
         data: 
         objectReferenceParameter: {fileID: 8654250720420973338, guid: 34115fd4eff069845a47d22ce756724e, type: 3}
         floatParameter: 0
